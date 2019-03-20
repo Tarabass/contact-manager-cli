@@ -12,28 +12,23 @@ const {
 } = require('./logic')
 
 // Craft questions to present to users
-const questions = [
-    {
-        type: 'input',
-        name: 'firstname',
-        message: 'Enter firstname ...'
-    },
-    {
-        type: 'input',
-        name: 'lastname',
-        message: 'Enter lastname ...'
-    },
-    {
-        type: 'input',
-        name: 'phone',
-        message: 'Enter phone number ...'
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'Enter email address ...'
-    }
-];
+const questions = [{
+    type: 'input',
+    name: 'firstname',
+    message: 'Enter firstname ...'
+}, {
+    type: 'input',
+    name: 'lastname',
+    message: 'Enter lastname ...'
+}, {
+    type: 'input',
+    name: 'phone',
+    message: 'Enter phone number ...'
+}, {
+    type: 'input',
+    name: 'email',
+    message: 'Enter email address ...'
+}]
 
 program
     .version('0.0.1')
@@ -45,8 +40,8 @@ program
     .description('Add a contact')
     .action(() => {
         prompt(questions).then(answers =>
-            addContact(answers));
-    });
+            addContact(answers))
+    })
 
 program
     .command('getContact <name>')
