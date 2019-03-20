@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander')
 const { prompt } = require('inquirer')
 // Require logic.js file and extract controller functions using JS destructing
