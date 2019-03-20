@@ -1,7 +1,13 @@
 {
   "name": "contact-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "Contact manager system",
+  "keywords": [
+    "contact",
+    "management",
+    "system"
+  ],
+  "main": "./contact.js",
   "preferGlobal": true,
   "bin": "./contact.js",
   "author": "",
