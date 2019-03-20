@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 const assert = require('assert')
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost:27017/contact-manager')
+mongoose.connect('mongodb://localhost:27017/contact-manager', { useNewUrlParser: true }, (err, database) => {
+    assert.equal(null, err)
+    console.log('connected to contact-manager')
+    database.close()
+})
 const db = mongoose.connection
 
 // Converts value to lowercase
