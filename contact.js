@@ -6,6 +6,7 @@ const { prompt } = require('inquirer')
 const {
     addContact,
     getContact,
+    getContacts,
     getContactList,
     updateContact,
     deleteContact
@@ -54,7 +55,7 @@ program
     .alias('u')
     .description('Update contact')
     .action(_id => {
-        prompt(questions).then((answers) =>
+        prompt(questions).then(answers =>
             updateContact(_id, answers))
     })
 
@@ -70,8 +71,33 @@ program
     .description('List contacts')
     .action(() => getContactList())
 
+const contactsToChoice = {
+    type: 'list',
+    name: 'contact',
+    message: 'Choose a contact:'
+}
+
+program
+    .command('getContacts')
+    .alias('g')
+    .description('Choose contact')
+    .action(() => {
+        getContacts().then(contacts => {
+            contactsToChoice.choices = contacts.map(contact => {
+                return contact.firstname + ' ' + contact.lastname
+            })
+            contactsToChoice.default = contactsToChoice.choices[0]
+
+            prompt(contactsToChoice).then(answer => {
+                let name = answer.contact
+
+                getContact(name.substring(0, name.indexOf(' ')))
+            })
+        })
+    })
+
 // Assert that a VALID command is provided 
-if (!process.argv.slice(2).length || !/[arudl]/.test(process.argv.slice(2))) {
+if (!process.argv.slice(2).length || !/[arudlg]/.test(process.argv.slice(2))) {
     program.outputHelp()
     process.exit()
 }

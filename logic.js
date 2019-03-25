@@ -17,7 +17,7 @@ const contactSchema = mongoose.Schema({
     firstname: { type: String, set: toLower },
     lastname: { type: String, set: toLower },
     phone: { type: String, set: toLower },
-    email: { type: String, set: toLower },
+    email: { type: String, set: toLower }
 })
 
 // Define model as an interface with the database
@@ -91,10 +91,19 @@ const getContactList = () => {
         })
 }
 
+/**
+ * @function  [getContacts]
+ * @returns [contacts] contacts
+ */
+const getContacts = () => {
+    return Contact.find().exec()
+}
+
 // Export all methods
 module.exports = {
     addContact,
     getContact,
+    getContacts,
     getContactList,
     updateContact,
     deleteContact
